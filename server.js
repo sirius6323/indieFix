@@ -40,8 +40,7 @@ http
 				throw error;
 			}
 
-			response.writeHead(200, { 'Content-Type': 'plain/text' });
-
+			response.writeHead(200, { 'Content-Type': 'text/html' });
 			response.write(data);
 			response.end();
 		});
