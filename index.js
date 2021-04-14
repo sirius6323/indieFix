@@ -3,6 +3,7 @@ const express = require('express'),
 	morgan = require('morgan'),
 	app = express();
 
+// Movies array to test functionality
 let top10Movies = [
 	{
 		title: 'Get Out',
@@ -13,6 +14,14 @@ let top10Movies = [
 		director: 'Bong Joon-ho',
 	},
 ];
+
+// Logs URL of every request made to server
+let logger = (req, res, next) => {
+	console.log(req.url);
+	next();
+};
+
+app.use(logger);
 
 // GET requests
 app.get('/', (req, res) => {
