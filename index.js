@@ -18,6 +18,9 @@ let top10Movies = [
 // Morgan logs url to terminal
 app.use(morgan('common'));
 
+// Serves static documentation of indieFix
+app.use(express.static('public'));
+
 // GET requests
 app.get('/', (req, res) => {
 	res.send('Welcome to indieFix!');
