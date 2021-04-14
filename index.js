@@ -15,13 +15,8 @@ let top10Movies = [
 	},
 ];
 
-// Logs URL of every request made to server
-let logger = (req, res, next) => {
-	console.log(req.url);
-	next();
-};
-
-app.use(logger);
+// Morgan logs url
+app.use(morgan('common'));
 
 // GET requests
 app.get('/', (req, res) => {
