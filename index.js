@@ -1,9 +1,8 @@
-// Import Express, Morgan, bodyParser, methodOverride
+// Import Express, Morgan, bodyParser,
 const express = require('express'),
 	morgan = require('morgan'),
 	app = express(),
-	bodyParser = require('body-parser'),
-	methodOverride = require('method-override');
+	bodyParser = require('body-parser');
 
 // Movies array to test functionality
 let top10Movies = [
@@ -27,7 +26,13 @@ app.use(express.static('public'));
 app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use(bodyParser.json());
-app.use(methodOverride());
+
+app.use((err, req, res, next) => {
+	console.log(err.stack);
+	res
+		.status(500)
+		.send('The hosting server is broken or exploded!!! Call me to fix it.');
+});
 
 // GET requests
 app.get('/', (req, res) => {
@@ -36,11 +41,6 @@ app.get('/', (req, res) => {
 
 app.get('/movies', (req, res) => {
 	res.json(top10Movies);
-});
-
-app.use((err, req, res, next) => {
-	console.log(err.stack);
-	res.status(500).send('You broke something!!! Call me to fix it.');
 });
 
 // Listens for requests
