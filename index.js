@@ -15,7 +15,7 @@ let top10Movies = [
 	},
 ];
 
-// Morgan logs url
+// Morgan logs url to terminal
 app.use(morgan('common'));
 
 // GET requests
