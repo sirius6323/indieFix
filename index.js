@@ -1,6 +1,18 @@
 // Import Express
 const express = require('express'),
+	morgan = require('morgan'),
 	app = express();
+
+let top10Movies = [
+	{
+		title: 'Get Out',
+		director: 'Jordan Peele',
+	},
+	{
+		title: 'Parasite',
+		director: 'Bong Joon-ho',
+	},
+];
 
 // GET requests
 app.get('/', (req, res) => {
