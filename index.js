@@ -14,6 +14,26 @@ let movies = [
 		title: 'Parasite',
 		director: 'Bong Joon-ho',
 	},
+	{
+		title: 'Momento',
+		director: 'Christoper Nolan',
+	},
+	{
+		title: 'The Blair Witch Project',
+		director: 'Eduardo Sanchez, Daniel Myrick',
+	},
+	{
+		title: 'Lost In Translation',
+		director: 'Sofia Coppola',
+	},
+	{
+		title: 'Donnie Darko',
+		director: 'Richard Kelly',
+	},
+	{
+		title: 'Reservoir Dogs',
+		director: 'Quentin Tarantino',
+	},
 ];
 
 // Morgan logs url to terminal
