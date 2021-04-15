@@ -5,7 +5,7 @@ const express = require('express'),
 	bodyParser = require('body-parser');
 
 // Movies array to test functionality
-let top10Movies = [
+let movies = [
 	{
 		title: 'Get Out',
 		director: 'Jordan Peele',
@@ -40,7 +40,7 @@ app.get('/', (req, res) => {
 });
 
 app.get('/movies', (req, res) => {
-	res.json(top10Movies);
+	res.json(movies);
 });
 
 // Listens for requests
