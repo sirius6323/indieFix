@@ -63,6 +63,14 @@ app.get('/movies', (req, res) => {
 	res.json(movies);
 });
 
+app.get('/movies/:title', (req, res) => {
+	res.json(
+		movies.find((movie) => {
+			return movie.title === req.params.title;
+		})
+	);
+});
+
 // Listens for requests
 app.listen(8080, () => {
 	console.log('indieFix API is listening on port 8080');
