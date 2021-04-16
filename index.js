@@ -59,10 +59,12 @@ app.get('/', (req, res) => {
 	res.send('Welcome to indieFix!');
 });
 
+// Gets the list of data about all movies
 app.get('/movies', (req, res) => {
 	res.json(movies);
 });
 
+// Gets the data of a single movie, by title
 app.get('/movies/:title', (req, res) => {
 	res.json(
 		movies.find((movie) => {
@@ -70,6 +72,8 @@ app.get('/movies/:title', (req, res) => {
 		})
 	);
 });
+
+// Adds data for a movie to
 
 // Listens for requests
 app.listen(8080, () => {
