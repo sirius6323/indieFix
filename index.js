@@ -73,8 +73,6 @@ app.get('/movies/:title', (req, res) => {
 	);
 });
 
-// Adds data for a movie to
-
 // Listens for requests
 app.listen(8080, () => {
 	console.log('indieFix API is listening on port 8080');
