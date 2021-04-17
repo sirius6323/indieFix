@@ -22,49 +22,49 @@ let movies = [
 	{
 		Title: 'Get Out',
 		Description: '',
-		Genre: '',
+		Genre: 'Horror, Mystery, Thriller',
 		Director: 'Jordan Peele',
 		Image: '',
 	},
 	{
 		Title: 'Parasite',
 		Description: '',
-		Genre: '',
+		Genre: 'Comedy, Drama, Thriller',
 		Director: 'Bong Joon-ho',
 		Image: '',
 	},
 	{
 		Title: 'Momento',
 		Description: '',
-		Genre: '',
+		Genre: 'Mystery, Thriller',
 		Director: 'Christoper Nolan',
 		Image: '',
 	},
 	{
 		Title: 'The Blair Witch Project',
 		Description: '',
-		Genre: '',
+		Genre: 'Horror, Mystery',
 		Director: 'Eduardo Sanchez, Daniel Myrick',
 		Image: '',
 	},
 	{
 		Title: 'Lost In Translation',
 		Description: '',
-		Genre: '',
+		Genre: 'Comedy, Drama',
 		Director: 'Sofia Coppola',
 		Image: '',
 	},
 	{
 		Title: 'Donnie Darko',
 		Description: '',
-		Genre: '',
+		Genre: 'Drama, Mystery, Sci-Fi, Thriller',
 		Director: 'Richard Kelly',
 		Image: '',
 	},
 	{
 		Title: 'Reservoir Dogs',
 		Description: '',
-		Genre: '',
+		Genre: 'Crime, Drama, Thriller',
 		Director: 'Quentin Tarantino',
 		Image: '',
 	},
@@ -108,10 +108,10 @@ app.get('/movies/:Title', (req, res) => {
 });
 
 // Gets the data of a genre by movie Title
-app.get('/movies/:Genre/:Title', (req, res) => {
+app.get('/movies/:Genre/', (req, res) => {
 	res.json(
-		movies.find((genre) => {
-			return genre.Title === req.params.Title;
+		movies.find((movie) => {
+			return movie.Genre === req.params.Genre;
 		})
 	);
 });
