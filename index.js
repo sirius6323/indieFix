@@ -1,3 +1,16 @@
+/*
+Requirements 
+1. Return a list of all movies to the user - (Done)
+2. Return all the data of a single movie by the title to the user - (Done)
+3. Return data about a Genre (Description) by name/title (e.g., "Thriller")
+4. Return data about a Director (bio, birth year, death year) by name 
+5. Allow new users to register
+6. Allow users to update their user info (username, password, email, date of birth)
+7. Allow users to add a movie to their list of favorites 
+8. Allow users remove a movie from their list of favorites
+9. Allow existing users to deregister 
+*/
+
 // Import Express, Morgan, bodyParser,
 const express = require('express'),
 	morgan = require('morgan'),
