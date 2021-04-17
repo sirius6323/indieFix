@@ -7,32 +7,53 @@ const express = require('express'),
 // Movies array to test functionality
 let movies = [
 	{
-		title: 'Get Out',
-		director: 'Jordan Peele',
+		Title: 'Get Out',
+		Description: '',
+		Genre: '',
+		Director: 'Jordan Peele',
+		Image: '',
 	},
 	{
-		title: 'Parasite',
-		director: 'Bong Joon-ho',
+		Title: 'Parasite',
+		Description: '',
+		Genre: '',
+		Director: 'Bong Joon-ho',
+		Image: '',
 	},
 	{
-		title: 'Momento',
-		director: 'Christoper Nolan',
+		Title: 'Momento',
+		Description: '',
+		Genre: '',
+		Director: 'Christoper Nolan',
+		Image: '',
 	},
 	{
-		title: 'The Blair Witch Project',
-		director: 'Eduardo Sanchez, Daniel Myrick',
+		Title: 'The Blair Witch Project',
+		Description: '',
+		Genre: '',
+		Director: 'Eduardo Sanchez, Daniel Myrick',
+		Image: '',
 	},
 	{
-		title: 'Lost In Translation',
-		director: 'Sofia Coppola',
+		Title: 'Lost In Translation',
+		Description: '',
+		Genre: '',
+		Director: 'Sofia Coppola',
+		Image: '',
 	},
 	{
-		title: 'Donnie Darko',
-		director: 'Richard Kelly',
+		Title: 'Donnie Darko',
+		Description: '',
+		Genre: '',
+		Director: 'Richard Kelly',
+		Image: '',
 	},
 	{
-		title: 'Reservoir Dogs',
-		director: 'Quentin Tarantino',
+		Title: 'Reservoir Dogs',
+		Description: '',
+		Genre: '',
+		Director: 'Quentin Tarantino',
+		Image: '',
 	},
 ];
 
@@ -56,19 +77,28 @@ app.use((err, req, res, next) => {
 
 // GET requests
 app.get('/', (req, res) => {
-	res.send('Welcome to indieFix!');
+	res.status(200).send('Welcome to indieFix!');
 });
 
 // Gets the list of data about all movies
 app.get('/movies', (req, res) => {
-	res.json(movies);
+	res.status(200).json(movies);
 });
 
-// Gets the data of a single movie, by title
-app.get('/movies/:title', (req, res) => {
+// Gets the data of a single movie, by Title
+app.get('/movies/:Title', (req, res) => {
 	res.json(
 		movies.find((movie) => {
-			return movie.title === req.params.title;
+			return movie.Title === req.params.Title;
+		})
+	);
+});
+
+// Gets the data of a genre by movie Title
+app.get('/movies/:Genres/:Title', (req, res) => {
+	res.json(
+		movies.find((genre) => {
+			return genre.Title === req.params.Title;
 		})
 	);
 });
