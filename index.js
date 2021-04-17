@@ -21,50 +21,64 @@ const express = require('express'),
 let movies = [
 	{
 		Title: 'Get Out',
-		Description: '',
-		Genre: 'Horror, Mystery, Thriller',
+		Genre: {
+			Name: 'Horror, Mystery, Thriller',
+			Description: '',
+		},
 		Director: 'Jordan Peele',
 		Image: '',
 	},
 	{
 		Title: 'Parasite',
-		Description: '',
-		Genre: 'Comedy, Drama, Thriller',
+		Genre: {
+			Name: 'Comedy, Drama, Thriller',
+			Description: '',
+		},
 		Director: 'Bong Joon-ho',
 		Image: '',
 	},
 	{
 		Title: 'Momento',
-		Description: '',
-		Genre: 'Mystery, Thriller',
+		Genre: {
+			Name: 'Mystery, Thriller',
+			Description: '',
+		},
 		Director: 'Christoper Nolan',
 		Image: '',
 	},
 	{
 		Title: 'The Blair Witch Project',
-		Description: '',
-		Genre: 'Horror, Mystery',
+		Genre: {
+			Name: 'Horror, Mystery',
+			Description: '',
+		},
 		Director: 'Eduardo Sanchez, Daniel Myrick',
 		Image: '',
 	},
 	{
 		Title: 'Lost In Translation',
-		Description: '',
-		Genre: 'Comedy, Drama',
+		Genre: {
+			Name: 'Comedy, Drama',
+			Description: '',
+		},
 		Director: 'Sofia Coppola',
 		Image: '',
 	},
 	{
 		Title: 'Donnie Darko',
-		Description: '',
-		Genre: 'Drama, Mystery, Sci-Fi, Thriller',
+		Genre: {
+			Name: 'Drama, Mystery, Sci-Fi, Thriller',
+			Description: '',
+		},
 		Director: 'Richard Kelly',
 		Image: '',
 	},
 	{
 		Title: 'Reservoir Dogs',
-		Description: '',
-		Genre: 'Crime, Drama, Thriller',
+		Genre: {
+			Name: 'Crime, Drama, Thriller',
+			Description: '',
+		},
 		Director: 'Quentin Tarantino',
 		Image: '',
 	},
@@ -100,7 +114,7 @@ app.get('/movies', (req, res) => {
 
 // Gets the data of a single movie, by Title
 app.get('/movies/:Title', (req, res) => {
-	res.json(
+	res.status(200).json(
 		movies.find((movie) => {
 			return movie.Title === req.params.Title;
 		})
@@ -109,7 +123,7 @@ app.get('/movies/:Title', (req, res) => {
 
 // Gets the data of a genre by movie Title
 app.get('/movies/:Genre/', (req, res) => {
-	res.json(
+	res.status(200).json(
 		movies.find((movie) => {
 			return movie.Genre === req.params.Genre;
 		})
