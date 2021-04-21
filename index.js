@@ -2,7 +2,7 @@
 Requirements 
 1. Return a list of all movies to the user - (Done)
 2. Return all the data of a single movie by the title to the user - (Done)
-3. Return data about a Genre (Description) by name/title (e.g., "Thriller")
+3. Return data about a Genre & (Description) by Name (e.g., "Thriller")
 4. Return data about a Director (bio, birth year, death year) by name 
 5. Allow new users to register
 6. Allow users to update their user info (username, password, email, date of birth)
@@ -121,15 +121,27 @@ app.get('/movies/:Title', (req, res) => {
 	);
 });
 
-// Gets the data of a genre by movie Title
-app.get('/movies/:Genre/', (req, res) => {
-	res.status(200).json(
-		movies.find((movie) => {
-			return movie.Genre === req.params.Genre;
-		})
-	);
+// Gets the data of a Genre by Name
+app.get('/movies/Genre/:Name', (req, res) => {
+	let genreName = movies.find((movie) => {
+		return movie.Genre.Name === req.params.Name;
+	});
+	res
+		.status(200)
+		.send(
+			`GET request successful returning data on Genre: ${genreName.Genre.Name}`
+		);
 });
 
+// Gets data of a Director by Name
+app.get('/movies/:Director', (req, res) => {
+	let directorName = movies.find((name) => {
+		return name.Director === req.params.Director;
+	});
+	res
+		.status(200)
+		.send(`Get request successful returning data on Director: ${directorName}`);
+});
 // Listens for requests
 app.listen(8080, () => {
 	console.log('indieFix API is listening on port 8080');
