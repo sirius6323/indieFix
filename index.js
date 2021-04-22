@@ -123,25 +123,25 @@ app.get('/movies/:Title', (req, res) => {
 
 // Gets the data of a Genre by Name
 app.get('/movies/Genre/:Name', (req, res) => {
-	let genreName = movies.find((movie) => {
+	let movieWithGenre = movies.find((movie) => {
 		return movie.Genre.Name === req.params.Name;
 	});
 	res
 		.status(200)
 		.send(
-			`GET request successful returning data on Genre: ${genreName.Genre.Name}`
+			`GET request successful returning data on Genre: ${movieWithGenre.Genre.Name}`
 		);
 });
 
 // Gets data of a Director by Name
 app.get('/movies/Director/:Name', (req, res) => {
-	let name = movies.find((movie) => {
+	let movieWithDirector = movies.find((movie) => {
 		return movie.Director === req.params.Name;
 	});
 	res
 		.status(200)
 		.send(
-			`GET request successful returning data on Director: ${name.Director}`
+			`GET request successful returning data on Director: ${movieWithDirector.Director}`
 		);
 });
 
@@ -163,16 +163,16 @@ app.post('/users', (req, res) => {
 
 // Post Request to add movies to users Favorite List
 app.post('/users/:Username/movies/FavoriteMovies', (req, res) => {
-	let movieTitle = req.body;
+	let movieFavTitle = req.body;
 
-	if (!movieTitle.FavoriteMovies) {
+	if (!movieFavTitle.FavoriteMovies) {
 		const message = 'Missing movie title in request body';
 		res.status(400).send(message);
 	} else {
 		res
 			.status(201)
 			.send(
-				`POST request successful adding ${movieTitle.FavoriteMovies} to your favorite list.`
+				`POST request successful adding ${movieFavTitle.FavoriteMovies} to your favorite list.`
 			);
 	}
 });
@@ -195,26 +195,26 @@ app.post('/users/:Username/movies/WatchList', (req, res) => {
 
 // Put Request to Update "Email" of User Account
 app.put('/users/:Username/Email', (req, res) => {
-	let newEmail = req.body;
+	let updateEmail = req.body;
 
-	if (!newEmail.Email) {
+	if (!updateEmail.Email) {
 		const message = 'Missing email in request body';
 		res.status(400).send(message);
 	} else {
 		res
 			.status(201)
-			.send(`PUT request successful updating email to: ${newEmail.Email}`);
+			.send(`PUT request successful updating email to: ${updateEmail.Email}`);
 	}
 });
 
 // Delete Requests
 // Delete movie from users Favorite List
 app.delete('/users/:Username/movies/FavoriteMovies', (req, res) => {
-	let movieTitle = req.body;
+	let movieFavTitle = req.body;
 	res
 		.status(201)
 		.send(
-			`DELETE request successful removing ${movieTitle.FavoriteMovies} from your favorite list.`
+			`DELETE request successful removing ${movieFavTitle.FavoriteMovies} from your favorite list.`
 		);
 });
 
