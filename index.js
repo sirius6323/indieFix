@@ -11,8 +11,6 @@ Requirements
 9. Allow existing users to deregister 
 */
 
-const { uniqueId } = require('lodash');
-
 // Import Express, Morgan, bodyParser,
 const express = require('express'),
 	morgan = require('morgan'),
