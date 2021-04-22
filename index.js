@@ -102,7 +102,7 @@ app.use((err, req, res, next) => {
 		.send('The hosting server is broken or exploded!!! Call me to fix it.');
 });
 
-// GET requests
+// GET requests, Sends user to homepage
 app.get('/', (req, res) => {
 	res.status(200).send('Welcome to indieFix!');
 });
@@ -144,6 +144,10 @@ app.get('/movies/Director/:Name', (req, res) => {
 			`Get request successful returning data on Director: ${name.Director}`
 		);
 });
+
+// Post Requests
+//
+
 // Listens for requests
 app.listen(8080, () => {
 	console.log('indieFix API is listening on port 8080');
