@@ -11,6 +11,8 @@ Requirements
 9. Allow existing users to deregister 
 */
 
+const { uniqueId } = require('lodash');
+
 // Import Express, Morgan, bodyParser,
 const express = require('express'),
 	morgan = require('morgan'),
@@ -141,12 +143,74 @@ app.get('/movies/Director/:Name', (req, res) => {
 	res
 		.status(200)
 		.send(
-			`Get request successful returning data on Director: ${name.Director}`
+			`GET request successful returning data on Director: ${name.Director}`
 		);
 });
 
-// Post Requests
-//
+// Post Request to Add New User
+app.post('/users', (req, res) => {
+	let newUser = req.body;
+
+	if (!newUser.Username) {
+		const message = 'Missing user name in request body';
+		res.status(400).send(message);
+	} else {
+		res
+			.status(201)
+			.send(
+				`POST request successful registering ${newUser.Username} to indieFix.`
+			);
+	}
+});
+
+// Post Request to add movies to users Favorite List
+app.post('/users/:Username/movies/FavoriteMovies', (req, res) => {
+	let movieTitle = req.body;
+
+	if (!movieTitle.FavoriteMovies) {
+		const message = 'Missing movie title in request body';
+		res.status(400).send(message);
+	} else {
+		res
+			.status(201)
+			.send(
+				`POST request successful adding ${movieTitle.FavoriteMovies} to your favorite list.`
+			);
+	}
+});
+
+// Post Request to add movies to users Watch List
+app.post('/users/:Username/movies/WatchList', (req, res) => {
+	let watchMovieTitle = req.body;
+
+	if (!watchMovieTitle.WatchMovieList) {
+		const message = 'Missing movie title in request body';
+		res.status(400).send(message);
+	} else {
+		res
+			.status(201)
+			.send(
+				`POST request successful adding ${watchMovieTitle.WatchMovieList} to your watch list.`
+			);
+	}
+});
+
+// Put Request to Update "Email" of User Account
+app.put('/users/:Username/Email', (req, res) => {
+	let newEmail = req.body;
+
+	if (!newEmail.Email) {
+		const message = 'Missing email in request body';
+		res.status(400).send(message);
+	} else {
+		res
+			.status(201)
+			.send(`PUT request successful updating email to: ${newEmail.Email}`);
+	}
+});
+
+// Delete Requests
+// Delete movie from users Favorite List
 
 // Listens for requests
 app.listen(8080, () => {
