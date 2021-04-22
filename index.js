@@ -209,6 +209,35 @@ app.put('/users/:Username/Email', (req, res) => {
 
 // Delete Requests
 // Delete movie from users Favorite List
+app.delete('/users/:Username/movies/FavoriteMovies', (req, res) => {
+	let movieTitle = req.body;
+	res
+		.status(201)
+		.send(
+			`DELETE request successful removing ${movieTitle.FavoriteMovies} from your favorite list.`
+		);
+});
+
+// Delete movie from users Watch List
+app.delete('/users/:Username/movies/WatchList', (req, res) => {
+	let watchMovieTitle = req.body;
+	res
+		.status(201)
+		.send(
+			`DELETE request successful removing ${watchMovieTitle.WatchMovieList} from your favorite list.`
+		);
+});
+
+// Delete user from database
+app.delete('/users/:Username', (req, res) => {
+	let deleteUser = req.params.Username;
+
+	res
+		.status(201)
+		.send(
+			`DELETE request successful deregistering ${deleteUser} from indieFix.`
+		);
+});
 
 // Listens for requests
 app.listen(8080, () => {
