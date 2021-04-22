@@ -134,13 +134,15 @@ app.get('/movies/Genre/:Name', (req, res) => {
 });
 
 // Gets data of a Director by Name
-app.get('/movies/:Director', (req, res) => {
-	let directorName = movies.find((name) => {
-		return name.Director === req.params.Director;
+app.get('/movies/Director/:Name', (req, res) => {
+	let name = movies.find((movie) => {
+		return movie.Director === req.params.Name;
 	});
 	res
 		.status(200)
-		.send(`Get request successful returning data on Director: ${directorName}`);
+		.send(
+			`Get request successful returning data on Director: ${name.Director}`
+		);
 });
 // Listens for requests
 app.listen(8080, () => {
