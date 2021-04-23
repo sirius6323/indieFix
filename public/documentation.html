@@ -19,7 +19,7 @@
 			<h3>Tech Stack and Dependencies</h3>
 			<p>
 				<strong>Stack:</strong> Node.js, Express<br />
-				<strong>Dependencies:</strong> express, bodyParser, morgan, lodash
+				<strong>Dependencies:</strong> express, bodyParser, and morgan
 			</p>
 			<table>
 				<caption>
@@ -28,32 +28,60 @@
 				<thead>
 					<tr>
 						<th class="colLg">
-							<h3>Description</h3>
-						</th>
-						<th>
-							<h3>URL</h3>
+							<h3>Endpoint</h3>
 						</th>
 						<th class="colSm">
 							<h3>HTTP Method</h3>
 						</th>
-						<th class="colSm">
-							<h3>Query Parameters</h3>
+						<th class="colMd">
+							<h3>Request Format</h3>
 						</th>
 						<th class="colMd">
-							<h3>Request body data format</h3>
+							<h3>Response Format</h3>
 						</th>
-						<th>
-							<h3>Response body data format</h3>
+						<th class="colMd">
+							<h3>Use Case</h3>
 						</th>
 					</tr>
 				</thead>
 				<tbody>
 					<tr>
-						<td scope="Returns the documentation html"></td>
+						<td>/</td>
 						<td>GET</td>
-						<td>Documentation</td>
-						<td>None</td>
-						<td>None</td>
+						<td>NONE</td>
+						<td>A welcome message to indieFix</td>
+						<td>Test GET request and ensure app is working correctly</td>
+					</tr>
+					<tr>
+						<td>/movies</td>
+						<td>GET</td>
+						<td>NONE</td>
+						<td>JSON object holding data of all movies</td>
+						<td>Returns a list of all the movies</td>
+					</tr>
+					<tr>
+						<td>/movies/[Title]</td>
+						<td>GET</td>
+						<td>NONE</td>
+						<td>JSON object holding data of a movie with a specific title</td>
+						<td>Returns information of specified movie by title</td>
+					</tr>
+					<tr>
+						<td>/movies/Genre/[Name]</td>
+						<td>GET</td>
+						<td>NONE</td>
+						<td>JSON object holding data of a specific genre</td>
+						<td>Returns data about the movie genre (description) by Name</td>
+					</tr>
+					<tr>
+						<td>/movies/Director/[Name]</td>
+						<td>GET</td>
+						<td>NONE</td>
+						<td>JSON object holding data of a director</td>
+						<td>
+							Returns data about the specified director (bio, birth year, death
+							year) by Name
+						</td>
 					</tr>
 				</tbody>
 			</table>
