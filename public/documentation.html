@@ -83,6 +83,99 @@
 							year) by Name
 						</td>
 					</tr>
+					<tr>
+						<td>/users</td>
+						<td>POST</td>
+						<td>
+							JSON<br />
+							<span>
+								{ "Username": "grayFox123", <br />
+								"Password": "cqc123", <br />
+								"Email": "boss123@gmail.com" <br />
+								"FirstName": "Frank", <br />
+								"LastName": "Jaeger", <br />
+								"movies" : "[]" }
+							</span>
+						</td>
+						<td>JSON object holding info of new user</td>
+						<td>Allows users to register to indieFix</td>
+					</tr>
+					<tr>
+						<td>/users/[Username]/movies/[FavoriteMovies]</td>
+						<td>POST</td>
+						<td>
+							JSON<br />
+							<span> { "FavoriteMovies": "Bottle Rocket"} </span>
+						</td>
+						<td>JSON object holding data of favorite movie to add</td>
+						<td>
+							Adds favorite movie to users favorite list. User will receive a
+							message that the movie was added to their favorite list
+						</td>
+					</tr>
+					<tr>
+						<td>/users/[Username]/movies/[WatchList]</td>
+						<td>POST</td>
+						<td>
+							JSON<br />
+							<span> { "WatchList": "Before Sunrise"} </span>
+						</td>
+						<td>
+							JSON object holding data of movie to add to users watch list
+						</td>
+						<td>
+							Adds movie to the users watch list. User will receive a message
+							that the movie was added to their watch list
+						</td>
+					</tr>
+					<tr>
+						<td>/users/[Username]/Email</td>
+						<td>PUT</td>
+						<td>NONE</td>
+						<td>JSON object holding data of users email to be updated</td>
+						<td>
+							Allows users to update their email on their account. Other user
+							account information will be able to be updated in the next release
+						</td>
+					</tr>
+					<tr>
+						<td>/users/[Username]/movies/[FavoriteMovies]</td>
+						<td>DELETE</td>
+						<td>NONE</td>
+						<td>
+							JSON object holding data of movie to remove from users favorite
+							list
+						</td>
+						<td>
+							Allows users to remove a movie from their favorite list. User will
+							receive a message that the specified movie was removed from their
+							favorite list
+						</td>
+					</tr>
+					<tr>
+						<td>/users/[Username]/movies/[WatchList]</td>
+						<td>DELETE</td>
+						<td>NONE</td>
+						<td>
+							JSON object holding data of movie to remove from users watch list
+						</td>
+						<td>
+							Allows users to remove a movie from their watch list. User will
+							receive a message that the specified movie was removed from their
+							watch list
+						</td>
+					</tr>
+					<tr>
+						<td>/users/[Username]</td>
+						<td>DELETE</td>
+						<td>NONE</td>
+						<td>Status message</td>
+						<td>
+							Allows existing user to deregister from indieFix. User will
+							receive a message informing them that they had been removed from
+							indieFix
+						</td>
+					</tr>
 				</tbody>
 			</table>
 		</main>
