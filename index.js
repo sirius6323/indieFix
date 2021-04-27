@@ -105,7 +105,7 @@ app.get('/movies/Director/:Name', (req, res) => {
 		});
 });
 
-// Post Request, Allows new users to register
+// POST Request, Allows new users to register
 app.post('/users', (req, res) => {
 	Users.findOne({ Username: req.body.Username })
 		.then((user) => {
