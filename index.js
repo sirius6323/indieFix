@@ -11,11 +11,17 @@ Requirements
 9. Allow existing users to deregister 
 */
 
-// Import Express, Morgan, bodyParser,
-const express = require('express'),
-	morgan = require('morgan'),
-	app = express(),
-	bodyParser = require('body-parser');
+// Import Mongoose, models.js file, Express, Morgan, bodyParser,
+const mongoose = require('mongoose'),
+	Models = require('./models.js');
+(express = require('express')),
+	(morgan = require('morgan')),
+	(app = express()),
+	(bodyParser = require('body-parser'));
+
+// Movie and User variables
+const Movies = Models.Movie;
+const Users = Models.User;
 
 // Morgan logs url to terminal
 app.use(morgan('common'));
