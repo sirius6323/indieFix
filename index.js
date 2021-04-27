@@ -117,6 +117,18 @@ app.get('/users', (req, res) => {
 		});
 });
 
+// GET Request, Allows Admin to view a registered User by Username in database
+app.get('/users/:Username', (req, res) => {
+	Users.findOne({ Username: req.params.Username })
+		.then((user) => {
+			res.status(201).json(user);
+		})
+		.catch((error) => {
+			console.error(error);
+			res.status(500).send(`Error: ${error}`);
+		});
+});
+
 // POST Request, Allows new users to register
 app.post('/users', (req, res) => {
 	Users.findOne({ Username: req.body.Username })
