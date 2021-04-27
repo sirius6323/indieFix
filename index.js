@@ -51,7 +51,11 @@ app.use((err, req, res, next) => {
 
 // GET requests, Sends user to homepage
 app.get('/', (req, res) => {
-	res.status(200).send('Welcome to indieFix!');
+	res
+		.status(200)
+		.send(
+			'Welcome to indieFix! Get comfy, grab your snacks, drinks, and get ready to your Indie Fix with these movies.'
+		);
 });
 
 // Gets the list of data about all movies
