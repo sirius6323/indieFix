@@ -23,6 +23,12 @@ const mongoose = require('mongoose'),
 const Movies = Models.Movie;
 const Users = Models.User;
 
+// Connects to indieFixDB
+mongoose.connect('mongodb://localhost:27017/indieFixDB', {
+	useNewURLParser: true,
+	useUnifiedTopology: true,
+});
+
 // Morgan logs url to terminal
 app.use(morgan('common'));
 
