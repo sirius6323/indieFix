@@ -197,16 +197,28 @@ app.post('/users/:Username/movies/WatchList', (req, res) => {
 
 // PUT Request, Allows Users to update their account by Username
 app.put('/users/:Username', (req, res) => {
-	let updateEmail = req.body;
-
-	if (!updateEmail.Email) {
-		const message = 'Missing email in request body';
-		res.status(400).send(message);
-	} else {
-		res
-			.status(201)
-			.send(`PUT request successful updating email to: ${updateEmail.Email}`);
-	}
+	Users.findOneAndUpdate(
+		{
+			Username: req.params.Username,
+		},
+		{
+			$set: {
+				FirstName: req.params.FirstName,
+				LastName: req.params.LastName,
+				Birthday: req.params.Birthday,
+				Username: req.params.Username,
+				Password: req.params.Password,
+				Email: req.params.Email,
+			},
+		}
+	)
+		.then((user) => {
+			res.status(201).json(user);
+		})
+		.catch((error) => {
+			console.error(error);
+			res.status(500).send(`Error: ${error}`);
+		});
 });
 
 // Delete Requests
