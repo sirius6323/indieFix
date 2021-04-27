@@ -107,18 +107,36 @@ app.get('/movies/Director/:Name', (req, res) => {
 
 // Post Request to Add New User
 app.post('/users', (req, res) => {
-	let newUser = req.body;
-
-	if (!newUser.Username) {
-		const message = 'Missing user name in request body';
-		res.status(400).send(message);
-	} else {
-		res
-			.status(201)
-			.send(
-				`POST request successful registering ${newUser.Username} to indieFix.`
-			);
-	}
+	Users.findOne({ Username: req.body.Username })
+		.then((user) => {
+			if (user) {
+				return res
+					.status(400)
+					.send(
+						`The UserName "${req.body.Username}" has already been taken by someone else.`
+					);
+			} else {
+				Users.create({
+					FirstName: req.params.FirstName,
+					LastName: req.params.LastName,
+					Birthday: req.params.Birthday,
+					Username: req.params.Username,
+					Password: req.params.Password,
+					Email: req.params.Email,
+				})
+					.then((user) => {
+						res.status(201).json(user);
+					})
+					.catch((error) => {
+						console.error(error);
+						res.status(500).send(`Error: ${error}`);
+					});
+			}
+		})
+		.catch((error) => {
+			console.error(error);
+			res.status(500).send(`Error: ${error}`);
+		});
 });
 
 // Post Request to add movies to users Favorite List
