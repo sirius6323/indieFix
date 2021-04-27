@@ -19,9 +19,11 @@ const mongoose = require('mongoose'),
 	app = express(),
 	bodyParser = require('body-parser');
 
-// Movie and User variables
+// Model variables
 const Movies = Models.Movie;
 const Users = Models.User;
+const Genres = Models.Genre;
+const Directors = Models.Director;
 
 // Connects to indieFixDB
 mongoose.connect('mongodb://localhost:27017/indieFixDB', {
