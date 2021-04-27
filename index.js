@@ -54,7 +54,7 @@ app.get('/', (req, res) => {
 	res
 		.status(200)
 		.send(
-			'Welcome to indieFix! Get comfy, grab your snacks, drinks, and get ready to your Indie Fix with these movies.'
+			'Welcome to indieFix! Get comfy, grab your snacks, drinks, and get ready for your Indie Fix with these movies.'
 		);
 });
 
