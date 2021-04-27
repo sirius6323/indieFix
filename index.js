@@ -49,7 +49,7 @@ app.use((err, req, res, next) => {
 		.send('The hosting server is broken or exploded!!! Call me to fix it.');
 });
 
-// GET requests, Sends user to homepage
+// GET request, Welcome message to the user
 app.get('/', (req, res) => {
 	res
 		.status(200)
@@ -58,7 +58,7 @@ app.get('/', (req, res) => {
 		);
 });
 
-// Gets the list of data about all movies
+// Gets request, Return a list of all movies to the user
 app.get('/movies', (req, res) => {
 	res.status(200).json(movies);
 });
