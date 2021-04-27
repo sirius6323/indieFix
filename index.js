@@ -182,19 +182,21 @@ app.post('/users/:Username/FavoriteMovies/:MovieID', (req, res) => {
 });
 
 // POST Request, Allows Users to add a movie to their "Watch List" by movie ID
-app.post('/users/:Username/movies/WatchList', (req, res) => {
-	let watchMovieTitle = req.body;
-
-	if (!watchMovieTitle.WatchMovieList) {
-		const message = 'Missing movie title in request body';
-		res.status(400).send(message);
-	} else {
-		res
-			.status(201)
-			.send(
-				`POST request successful adding ${watchMovieTitle.WatchMovieList} to your watch list.`
-			);
-	}
+app.post('/users/:Username/WatchList/:MovieID', (req, res) => {
+	Users.findOneAndUpdate(
+		{
+			Username: req.params.Username,
+		},
+		{ $addToSet: { WatchMovieList: req.params.MovieID } },
+		{ new: true }
+	)
+		.then((userWatchMovie) => {
+			res.status(201).json(userWatchMovie);
+		})
+		.catch((error) => {
+			console.error(error);
+			res.status(500).send(`Error: ${error}`);
+		});
 });
 
 // PUT Request, Allows Users to update their account by Username
