@@ -106,6 +106,16 @@ app.get('/movies/Director/:Name', (req, res) => {
 });
 
 // GET Request, Allows Admin to view all registered Users in database
+app.get('/users', (req, res) => {
+	Users.find()
+		.then((users) => {
+			res.status(201).json(users);
+		})
+		.catch((error) => {
+			console.error(error);
+			res.status(500).send(`Error: ${error}`);
+		});
+});
 
 // POST Request, Allows new users to register
 app.post('/users', (req, res) => {
