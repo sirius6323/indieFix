@@ -172,7 +172,7 @@ app.post('/users/:Username/movies/WatchList', (req, res) => {
 });
 
 // Put Request to Update "Email" of User Account
-app.put('/users/:Username/Email', (req, res) => {
+app.put('/users/:Username', (req, res) => {
 	let updateEmail = req.body;
 
 	if (!updateEmail.Email) {
