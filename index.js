@@ -164,19 +164,21 @@ app.post('/users', (req, res) => {
 });
 
 // POST Request, Allows Users to add a movie to their "Favorites" list by movie ID
-app.post('/users/:Username/movies/FavoriteMovies', (req, res) => {
-	let movieFavTitle = req.body;
-
-	if (!movieFavTitle.FavoriteMovies) {
-		const message = 'Missing movie title in request body';
-		res.status(400).send(message);
-	} else {
-		res
-			.status(201)
-			.send(
-				`POST request successful adding ${movieFavTitle.FavoriteMovies} to your favorite list.`
-			);
-	}
+app.post('/users/:Username/FavoriteMovies/:MovieID', (req, res) => {
+	Users.findOneAndUpdate(
+		{
+			Username: req.params.Username,
+		},
+		{ $addToSet: { FavoriteMovies: req.params.MovieID } },
+		{ new: true }
+	)
+		.then((userFavMovie) => {
+			res.status(201).json(userFavMovie);
+		})
+		.catch((error) => {
+			console.error(error);
+			res.status(500).send(`Error: ${error}`);
+		});
 });
 
 // POST Request, Allows Users to add a movie to their "Watch List" by movie ID
