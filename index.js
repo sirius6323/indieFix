@@ -58,7 +58,7 @@ app.get('/', (req, res) => {
 		);
 });
 
-// Gets request, Return a list of all movies to the user
+// GET request, Return a list of all movies to the user
 app.get('/movies', (req, res) => {
 	Movies.find()
 		.then((allMovies) => {
@@ -70,7 +70,7 @@ app.get('/movies', (req, res) => {
 		});
 });
 
-// Gets the data of a single movie, by Title
+// GET request, Return a single movie by Title to the user
 app.get('/movies/:Title', (req, res) => {
 	Movies.findOne({ Title: req.params.Title })
 		.then((singleMovie) => {
@@ -82,7 +82,7 @@ app.get('/movies/:Title', (req, res) => {
 		});
 });
 
-// Gets the data of a Genre by Name
+// GET request, Returns data about a single Genre by Name to the user
 app.get('/movies/Genre/:Name', (req, res) => {
 	Genres.findOne({ 'Genre.Name': req.params.Name })
 		.then((singleGenre) => {
@@ -94,7 +94,7 @@ app.get('/movies/Genre/:Name', (req, res) => {
 		});
 });
 
-// Gets data of a Director by Name
+// GET request, Returns data about a single Director by Name to the user
 app.get('/movies/Director/:Name', (req, res) => {
 	Directors.findOne({ 'Director.Name': req.params.Name })
 		.then((singleDirector) => {
