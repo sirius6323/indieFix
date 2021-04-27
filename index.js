@@ -77,20 +77,21 @@ app.get('/movies/:Title', (req, res) => {
 			res.status(201).json(singleMovie);
 		})
 		.catch((error) => {
+			console.error(error);
 			res.status(500).send(`Error: ${error}`);
 		});
 });
 
 // Gets the data of a Genre by Name
 app.get('/movies/Genre/:Name', (req, res) => {
-	let movieWithGenre = movies.find((movie) => {
-		return movie.Genre.Name === req.params.Name;
-	});
-	res
-		.status(200)
-		.send(
-			`GET request successful returning data on Genre: ${movieWithGenre.Genre.Name}`
-		);
+	Genres.findOne({ 'Genre.Name': req.params.Name })
+		.then((singleGenre) => {
+			res.status(201).json(singleGenre);
+		})
+		.catch((error) => {
+			console.error(error);
+			res.status(500).send(`Error: ${error}`);
+		});
 });
 
 // Gets data of a Director by Name
