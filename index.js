@@ -49,7 +49,7 @@ app.use((err, req, res, next) => {
 		.send('The hosting server is broken or exploded!!! Call me to fix it.');
 });
 
-// GET request, Welcome message to the user
+// GET Request, Welcome message to the user
 app.get('/', (req, res) => {
 	res
 		.status(200)
@@ -58,7 +58,7 @@ app.get('/', (req, res) => {
 		);
 });
 
-// GET request, Return a list of all movies to the user
+// GET Request, Return a list of all movies to the user
 app.get('/movies', (req, res) => {
 	Movies.find()
 		.then((allMovies) => {
@@ -70,7 +70,7 @@ app.get('/movies', (req, res) => {
 		});
 });
 
-// GET request, Return a single movie by Title to the user
+// GET Request, Return a single movie by Title to the user
 app.get('/movies/:Title', (req, res) => {
 	Movies.findOne({ Title: req.params.Title })
 		.then((singleMovie) => {
@@ -82,7 +82,7 @@ app.get('/movies/:Title', (req, res) => {
 		});
 });
 
-// GET request, Returns data about a single Genre by Name to the user
+// GET Request, Returns data about a single Genre by Name to the user
 app.get('/movies/Genre/:Name', (req, res) => {
 	Genres.findOne({ 'Genre.Name': req.params.Name })
 		.then((singleGenre) => {
@@ -94,7 +94,7 @@ app.get('/movies/Genre/:Name', (req, res) => {
 		});
 });
 
-// GET request, Returns data about a single Director by Name to the user
+// GET Request, Returns data about a single Director by Name to the user
 app.get('/movies/Director/:Name', (req, res) => {
 	Directors.findOne({ 'Director.Name': req.params.Name })
 		.then((singleDirector) => {
@@ -104,6 +104,8 @@ app.get('/movies/Director/:Name', (req, res) => {
 			res.status(500).send(`Error: ${error}`);
 		});
 });
+
+// GET Request, Allows Admin to view all registered Users in database
 
 // POST Request, Allows new users to register
 app.post('/users', (req, res) => {
