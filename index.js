@@ -195,7 +195,7 @@ app.post('/users/:Username/movies/WatchList', (req, res) => {
 	}
 });
 
-// Put Request to Update "Email" of User Account
+// PUT Request, Allows Users to update their account by Username
 app.put('/users/:Username', (req, res) => {
 	let updateEmail = req.body;
 
