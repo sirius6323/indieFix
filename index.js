@@ -163,7 +163,7 @@ app.post('/users', (req, res) => {
 		});
 });
 
-// Post Request to add movies to users Favorite List
+// POST Request, Allows Users to add a movie to their "Favorites" list by movie ID
 app.post('/users/:Username/movies/FavoriteMovies', (req, res) => {
 	let movieFavTitle = req.body;
 
@@ -179,7 +179,7 @@ app.post('/users/:Username/movies/FavoriteMovies', (req, res) => {
 	}
 });
 
-// Post Request to add movies to users Watch List
+// POST Request, Allows Users to add a movie to their "Watch List" by movie ID
 app.post('/users/:Username/movies/WatchList', (req, res) => {
 	let watchMovieTitle = req.body;
 
