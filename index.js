@@ -13,11 +13,11 @@ Requirements
 
 // Import Mongoose, models.js file, Express, Morgan, bodyParser,
 const mongoose = require('mongoose'),
-	Models = require('./models.js');
-(express = require('express')),
-	(morgan = require('morgan')),
-	(app = express()),
-	(bodyParser = require('body-parser'));
+	Models = require('./models.js'),
+	express = require('express'),
+	morgan = require('morgan'),
+	app = express(),
+	bodyParser = require('body-parser');
 
 // Movie and User variables
 const Movies = Models.Movie;
