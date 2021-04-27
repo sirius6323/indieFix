@@ -96,14 +96,13 @@ app.get('/movies/Genre/:Name', (req, res) => {
 
 // Gets data of a Director by Name
 app.get('/movies/Director/:Name', (req, res) => {
-	let movieWithDirector = movies.find((movie) => {
-		return movie.Director === req.params.Name;
-	});
-	res
-		.status(200)
-		.send(
-			`GET request successful returning data on Director: ${movieWithDirector.Director}`
-		);
+	Directors.findOne({ 'Director.Name': req.params.Name })
+		.then((singleDirector) => {
+			res.status(201).json(singleDirector);
+		})
+		.catch((error) => {
+			res.status(500).send(`Error: ${error}`);
+		});
 });
 
 // Post Request to Add New User
