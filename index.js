@@ -239,7 +239,7 @@ app.delete('/users/:Username/FavoriteMovies/:MovieID', (req, res) => {
 });
 
 // DELETE Request, Allows Users to remove a movie from their "WatchList" by movie ID
-app.delete('/users/:Username/WatchList/:MovieID', (req, res) => {
+app.delete('/users/:Username/WatchListMovies/:MovieID', (req, res) => {
 	Users.findOneAndDelete(
 		{ Username: req.params.Username },
 		{ $pull: { WatchListMovies: req.params.MovieID } },
