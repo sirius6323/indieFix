@@ -245,7 +245,7 @@ app.delete('/users/:Username/movies/WatchList', (req, res) => {
 		);
 });
 
-// Delete user from database
+// DELETE Request, Allows existing users to deregister by Username
 app.delete('/users/:Username', (req, res) => {
 	Users.findOneAndDelete({ Username: req.params.Username })
 		.then((user) => {
