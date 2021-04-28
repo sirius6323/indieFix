@@ -226,13 +226,19 @@ app.put('/users/:Username', (req, res) => {
 
 // Delete Requests
 // Delete movie from users Favorite List
-app.delete('/users/:Username/movies/FavoriteMovies', (req, res) => {
-	let movieFavTitle = req.body;
-	res
-		.status(201)
-		.send(
-			`DELETE request successful removing ${movieFavTitle.FavoriteMovies} from your favorite list.`
-		);
+app.delete('/users/:Username/FavoriteMovies/:MovieID', (req, res) => {
+	Users.findOneAndUpdate(
+		{ Username: req.params.Username },
+		{ $pull: { FavoriteMovies: req.params.MovieID } },
+		{ new: true }
+	)
+		.then((user) => {
+			res.status(201).json(user);
+		})
+		.catch((error) => {
+			console.error(error);
+			res.status(500).send(`Error: ${error}`);
+		});
 });
 
 // Delete movie from users Watch List
