@@ -83,8 +83,8 @@ app.get('/movies/:Title', (req, res) => {
 // GET Request, Returns data about a single Genre by Name to the user
 app.get('/movies/Genre/:Name', (req, res) => {
 	Movies.findOne({ 'Genre.Name': req.params.Name })
-		.then((singleGenre) => {
-			res.status(201).json(singleGenre);
+		.then((movie) => {
+			res.status(201).json(movie.Genre);
 		})
 		.catch((error) => {
 			console.error(error);
@@ -95,8 +95,8 @@ app.get('/movies/Genre/:Name', (req, res) => {
 // GET Request, Returns data about a single Director by Name to the user
 app.get('/movies/Director/:Name', (req, res) => {
 	Movies.findOne({ 'Director.Name': req.params.Name })
-		.then((singleDirector) => {
-			res.status(201).json(singleDirector);
+		.then((movie) => {
+			res.status(201).json(movie.Director);
 		})
 		.catch((error) => {
 			res.status(500).send(`Error: ${error}`);
