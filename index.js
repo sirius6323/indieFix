@@ -204,11 +204,11 @@ app.put('/users/:Username', (req, res) => {
 		{
 			$set: {
 				FirstName: req.body.FirstName,
-				LastName: req.params.LastName,
-				Birthday: req.params.Birthday,
-				Username: req.params.Username,
-				Password: req.params.Password,
-				Email: req.params.Email,
+				LastName: req.body.LastName,
+				Birthday: req.body.Birthday,
+				Username: req.body.Username,
+				Password: req.body.Password,
+				Email: req.body.Email,
 			},
 		},
 		{ new: true }
