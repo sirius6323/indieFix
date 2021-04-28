@@ -17,19 +17,6 @@ const movieSchema = mongoose.Schema({
 	Featured: Boolean,
 });
 
-// Movie Genre Schema
-const genreSchema = mongoose.Schema({
-	Name: { type: String, required: true },
-	Description: { type: String, required: true },
-});
-
-// Movie Director Schema
-const directorSchema = mongoose.Schema({
-	Name: { type: String, required: true },
-	Bio: String,
-	Birth: { type: Number, required: true },
-});
-
 // User Schema
 const userSchema = mongoose.Schema({
 	FirstName: { type: String, required: true },
@@ -43,11 +30,7 @@ const userSchema = mongoose.Schema({
 });
 
 const Movie = mongoose.model('Movie', movieSchema);
-const Genre = mongoose.model('Genre', genreSchema);
-const Director = mongoose.model('Director', directorSchema);
 const User = mongoose.model('User', userSchema);
 
 module.exports.Movie = Movie;
-module.exports.Genre = Genre;
-module.exports.Director = Director;
 module.exports.User = User;
