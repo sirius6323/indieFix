@@ -240,14 +240,20 @@ app.delete('/users/:Username/FavoriteMovies/:MovieID', (req, res) => {
 		});
 });
 
-// Delete movie from users Watch List
-app.delete('/users/:Username/movies/WatchList', (req, res) => {
-	let watchMovieTitle = req.body;
-	res
-		.status(201)
-		.send(
-			`DELETE request successful removing ${watchMovieTitle.WatchMovieList} from your favorite list.`
-		);
+// DELETE Request, Allows Users to remove a movie from their "WatchList" by movie ID
+app.delete('/users/:Username/WatchList/:MovieID', (req, res) => {
+	Users.findOneAndDelete(
+		{ Username: req.params.Username },
+		{ $pull: { WatchList: req.params.MovieID } },
+		{ new: true }
+	)
+		.then((user) => {
+			res.status(201).json(user);
+		})
+		.catch((error) => {
+			console.error(error);
+			res.status(500).send(`Error: ${error}`);
+		});
 });
 
 // DELETE Request, Allows existing users to deregister by Username
