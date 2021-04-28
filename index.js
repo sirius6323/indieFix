@@ -187,7 +187,7 @@ app.post('/users/:Username/WatchList/:MovieID', (req, res) => {
 		{
 			Username: req.params.Username,
 		},
-		{ $addToSet: { WatchMovieList: req.params.MovieID } },
+		{ $addToSet: { WatchListMovies: req.params.MovieID } },
 		{ new: true }
 	)
 		.then((userWatchMovie) => {
@@ -244,7 +244,7 @@ app.delete('/users/:Username/FavoriteMovies/:MovieID', (req, res) => {
 app.delete('/users/:Username/WatchList/:MovieID', (req, res) => {
 	Users.findOneAndDelete(
 		{ Username: req.params.Username },
-		{ $pull: { WatchList: req.params.MovieID } },
+		{ $pull: { WatchListMovies: req.params.MovieID } },
 		{ new: true }
 	)
 		.then((user) => {
