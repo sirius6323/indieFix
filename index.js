@@ -21,8 +21,6 @@ const mongoose = require('mongoose'),
 
 // Model variables
 const Movies = Models.Movie;
-const Genres = Models.Genre;
-const Directors = Models.Director;
 const Users = Models.User;
 
 // Connects to indieFixDB
@@ -84,7 +82,7 @@ app.get('/movies/:Title', (req, res) => {
 
 // GET Request, Returns data about a single Genre by Name to the user
 app.get('/movies/Genre/:Name', (req, res) => {
-	Genres.findOne({ Name: req.params.Name })
+	Movies.findOne({ 'Genre.Name': req.params.Name })
 		.then((singleGenre) => {
 			res.status(201).json(singleGenre);
 		})
@@ -96,7 +94,7 @@ app.get('/movies/Genre/:Name', (req, res) => {
 
 // GET Request, Returns data about a single Director by Name to the user
 app.get('/movies/Director/:Name', (req, res) => {
-	Directors.findOne({ Name: req.params.Name })
+	Movies.findOne({ 'Director.Name': req.params.Name })
 		.then((singleDirector) => {
 			res.status(201).json(singleDirector);
 		})
