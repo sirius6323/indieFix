@@ -139,12 +139,12 @@ app.post('/users', (req, res) => {
 					);
 			} else {
 				Users.create({
-					FirstName: req.params.FirstName,
-					LastName: req.params.LastName,
-					Birthday: req.params.Birthday,
-					Username: req.params.Username,
-					Password: req.params.Password,
-					Email: req.params.Email,
+					FirstName: req.body.FirstName,
+					LastName: req.body.LastName,
+					Birthday: req.body.Birthday,
+					Username: req.body.Username,
+					Password: req.body.Password,
+					Email: req.body.Email,
 				})
 					.then((user) => {
 						res.status(201).json(user);
