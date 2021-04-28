@@ -247,13 +247,26 @@ app.delete('/users/:Username/movies/WatchList', (req, res) => {
 
 // Delete user from database
 app.delete('/users/:Username', (req, res) => {
-	let deleteUser = req.params.Username;
-
-	res
-		.status(201)
-		.send(
-			`DELETE request successful deregistering ${deleteUser} from indieFix.`
-		);
+	Users.findOneAndDelete({ Username: req.params.Username })
+		.then((user) => {
+			if (!user) {
+				res
+					.status(400)
+					.send(
+						`Username: "${req.params.Username}" was not found in the database.`
+					);
+			} else {
+				res
+					.status(200)
+					.send(
+						`The user with Username: "${req.params.Username}" has been deleted from the database`
+					);
+			}
+		})
+		.catch((error) => {
+			console.error(error);
+			res.status(500).send(`Error: ${error}`);
+		});
 });
 
 // Listens for requests
