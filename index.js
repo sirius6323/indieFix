@@ -202,22 +202,21 @@ app.post('/users/:Username/WatchList/:MovieID', (req, res) => {
 // PUT Request, Allows Users to update their account by Username
 app.put('/users/:Username', (req, res) => {
 	Users.findOneAndUpdate(
-		{
-			Username: req.params.Username,
-		},
+		{ Username: req.params.Username },
 		{
 			$set: {
-				FirstName: req.params.FirstName,
+				FirstName: req.body.FirstName,
 				LastName: req.params.LastName,
 				Birthday: req.params.Birthday,
 				Username: req.params.Username,
 				Password: req.params.Password,
 				Email: req.params.Email,
 			},
-		}
+		},
+		{ new: true }
 	)
-		.then((user) => {
-			res.status(201).json(user);
+		.then((updatedUser) => {
+			res.status(201).json(updatedUser);
 		})
 		.catch((error) => {
 			console.error(error);
