@@ -180,7 +180,7 @@ app.post('/users/:Username/FavoriteMovies/:MovieID', (req, res) => {
 });
 
 // POST Request, Allows Users to add a movie to their "Watch List" by movie ID
-app.post('/users/:Username/WatchList/:MovieID', (req, res) => {
+app.post('/users/:Username/WatchListMovies/:MovieID', (req, res) => {
 	Users.findOneAndUpdate(
 		{
 			Username: req.params.Username,
