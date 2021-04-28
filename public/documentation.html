@@ -56,124 +56,208 @@
 						<td>/movies</td>
 						<td>GET</td>
 						<td>NONE</td>
-						<td>JSON object holding data of all movies</td>
+						<td>
+							JSON object holding data of all movies containing Title,
+							Description, Genre, Director, and ImageURL
+						</td>
 						<td>Returns a list of all the movies</td>
 					</tr>
 					<tr>
-						<td>/movies/[Title]</td>
+						<td>/movies/:Title</td>
 						<td>GET</td>
 						<td>NONE</td>
-						<td>JSON object holding data of a movie with a specific title</td>
+						<td>
+							JSON object holding data of a single movie with a specific title.
+							Movie contains Title, Description, Genre, Director, and ImageURL
+						</td>
 						<td>Returns information of specified movie by title</td>
 					</tr>
 					<tr>
-						<td>/movies/Genre/[Name]</td>
+						<td>/movies/Genre/:Name</td>
 						<td>GET</td>
 						<td>NONE</td>
-						<td>JSON object holding data of a specific genre</td>
+						<td>
+							JSON object holding data of a specific genre containing its Name
+							and Description
+						</td>
 						<td>Returns data about the movie genre (description) by Name</td>
 					</tr>
 					<tr>
-						<td>/movies/Director/[Name]</td>
+						<td>/movies/Director/:Name</td>
 						<td>GET</td>
 						<td>NONE</td>
-						<td>JSON object holding data of a director</td>
 						<td>
-							Returns data about the specified director (bio, birth year, death
-							year) by Name
+							JSON object holding data of a director containing their Name, Bio,
+							and Birth year
+						</td>
+						<td>
+							Returns data about the specified director (Name, Bio, Birth year)
+						</td>
+					</tr>
+					<tr>
+						<td>/users</td>
+						<td>GET</td>
+						<td>NONE</td>
+						<td>
+							JSON
+							<br />
+							<span>
+								{ "FirstName": "Frank", <br />
+								"LastName": "Jaeger", <br />
+								"Birthday: "04/26/1950", <br />
+								"Username": "grayFox123", <br />
+								"Password": "cqc123", <br />
+								"Email": "boss123@gmail.com", <br />
+								"FavoriteMovies": [], <br />
+								"WatchListMovies": [], <br />
+								}
+							</span>
+						</td>
+						<td>Allows Admin to view all registered users on the database</td>
+					</tr>
+					<tr>
+						<td>/users/:Username</td>
+						<td>GET</td>
+						<td>NONE</td>
+						<td>
+							JSON
+							<br />
+							<span>
+								{ "FirstName": "Frank", <br />
+								"LastName": "Jaeger", <br />
+								"Birthday: "04/26/1950", <br />
+								"Username": "grayFox123", <br />
+								"Password": "cqc123", <br />
+								"Email": "boss123@gmail.com", <br />
+								"FavoriteMovies": [], <br />
+								"WatchListMovies": [], <br />
+								}
+							</span>
+						</td>
+						<td>
+							Allows Admin to view a registered user on the database by their
+							Username
 						</td>
 					</tr>
 					<tr>
 						<td>/users</td>
 						<td>POST</td>
 						<td>
-							JSON<br />
+							JSON
+							<br />
 							<span>
-								{ "Username": "grayFox123", <br />
-								"Password": "cqc123", <br />
-								"Email": "boss123@gmail.com" <br />
-								"FirstName": "Frank", <br />
+								{ "FirstName": "Frank", <br />
 								"LastName": "Jaeger", <br />
-								"movies" : "[]" }
+								"Birthday: "04/26/1950", <br />
+								"Username": "grayFox123", <br />
+								"Password": "cqc123", <br />
+								"Email": "boss123@gmail.com", <br />
+								"FavoriteMovies": [], <br />
+								"WatchListMovies": [], <br />
+								}
 							</span>
 						</td>
-						<td>JSON object holding info of new user</td>
-						<td>Allows users to register to indieFix</td>
+						<td>
+							JSON object holding data of new user containing their FirstName,
+							LastName, Birthday, Username, Password, Email, FavoriteMovies,
+							WatchListMovies
+						</td>
+						<td>Allows new users to register to indieFix</td>
 					</tr>
 					<tr>
-						<td>/users/[Username]/movies/[FavoriteMovies]</td>
+						<td>/users/:Username/FavoriteMovies/:MovieID</td>
 						<td>POST</td>
 						<td>
 							JSON<br />
-							<span> { "FavoriteMovies": "Bottle Rocket"} </span>
+							<span> { "FavoriteMovies": "6085b3cbb69884675ab919dd"} </span>
 						</td>
-						<td>JSON object holding data of favorite movie to add</td>
 						<td>
-							Adds favorite movie to users favorite list. User will receive a
-							message that the movie was added to their favorite list
+							JSON object holding data of a movie to be added to the users
+							FavoriteMovies by the movie ID
+						</td>
+						<td>
+							Adds a favorite movie to users FavoriteMovie list. User will
+							receive a message that the movie was added to their favorite list
 						</td>
 					</tr>
 					<tr>
-						<td>/users/[Username]/movies/[WatchList]</td>
+						<td>/users/:Username/WatchListMovies/:MovieID</td>
 						<td>POST</td>
 						<td>
 							JSON<br />
-							<span> { "WatchList": "Before Sunrise"} </span>
+							<span> { "WatchListMovies": "6085b52ab69884675ab919de"} </span>
 						</td>
 						<td>
-							JSON object holding data of movie to add to users watch list
+							JSON object holding data of movie to added to the users
+							WatchListMovies by the movie ID
 						</td>
 						<td>
-							Adds movie to the users watch list. User will receive a message
+							Adds a movie to the WatchListMovies. User will receive a message
 							that the movie was added to their watch list
 						</td>
 					</tr>
 					<tr>
-						<td>/users/[Username]/Email</td>
+						<td>/users/:Username</td>
 						<td>PUT</td>
-						<td>NONE</td>
-						<td>JSON object holding data of users email to be updated</td>
 						<td>
-							Allows users to update their email on their account. Other user
-							account information will be able to be updated in the next release
+							JSON
+							<br />
+							<span>
+								{ "FirstName": "Frank", <br />
+								"LastName": "Jaeger", <br />
+								"Birthday: "04/26/1950", <br />
+								"Username": "grayFox123", <br />
+								"Password": "cqc123", <br />
+								"Email": "boss123@gmail.com", <br />
+								"FavoriteMovies": [], <br />
+								"WatchListMovies": [], <br />
+								}
+							</span>
 						</td>
+						<td>
+							JSON object holding data of user to be updated, containing their
+							FirstName, LastName, Birthday, Username, Password, FavoriteMovies,
+							WatchListMovies
+						</td>
+						<td>Allows users to update their account</td>
 					</tr>
 					<tr>
-						<td>/users/[Username]/movies/[FavoriteMovies]</td>
+						<td>/users/:Username/FavoriteMovies/:MovieID</td>
 						<td>DELETE</td>
 						<td>NONE</td>
 						<td>
-							JSON object holding data of movie to remove from users favorite
-							list
+							JSON object holding data of movie to remove from the users
+							FavoriteMovies list
 						</td>
 						<td>
-							Allows users to remove a movie from their favorite list. User will
-							receive a message that the specified movie was removed from their
-							favorite list
-						</td>
-					</tr>
-					<tr>
-						<td>/users/[Username]/movies/[WatchList]</td>
-						<td>DELETE</td>
-						<td>NONE</td>
-						<td>
-							JSON object holding data of movie to remove from users watch list
-						</td>
-						<td>
-							Allows users to remove a movie from their watch list. User will
-							receive a message that the specified movie was removed from their
-							watch list
+							Allows users to remove a movie from their FavoriteMovies list.
+							User will receive a message that the specified movie was removed
+							from their Favorites list by movie ID.
 						</td>
 					</tr>
 					<tr>
-						<td>/users/[Username]</td>
+						<td>/users/:Username/WatchListMovies/:MovieID</td>
 						<td>DELETE</td>
 						<td>NONE</td>
-						<td>Status message</td>
 						<td>
-							Allows existing user to deregister from indieFix. User will
+							JSON object holding data of movie to remove from the users
+							WatchListMovies
+						</td>
+						<td>
+							Allows users to remove a movie from their WatchListMovies. User
+							will receive a message that the specified movie was removed from
+							their watch list
+						</td>
+					</tr>
+					<tr>
+						<td>/users/:Username</td>
+						<td>DELETE</td>
+						<td>NONE</td>
+						<td>Status Message</td>
+						<td>
+							Allows existing users to deregister from indieFix. User will
 							receive a message informing them that they had been removed from
-							indieFix
+							indieFix or that the username was not found
 						</td>
 					</tr>
 				</tbody>
