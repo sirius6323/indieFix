@@ -43,11 +43,11 @@ const userSchema = mongoose.Schema({
 });
 
 const Movie = mongoose.model('Movie', movieSchema);
-const User = mongoose.model('User', userSchema);
 const Genre = mongoose.model('Genre', genreSchema);
 const Director = mongoose.model('Director', directorSchema);
+const User = mongoose.model('User', userSchema);
 
 module.exports.Movie = Movie;
-module.exports.User = User;
 module.exports.Genre = Genre;
 module.exports.Director = Director;
+module.exports.User = User;
