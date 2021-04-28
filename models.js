@@ -18,7 +18,7 @@ const movieSchema = mongoose.Schema({
 });
 
 // Movie Genre Schema
-let genreSchema = mongoose.Schema({
+const genreSchema = mongoose.Schema({
 	Name: { type: String, required: true },
 	Description: { type: String, required: true },
 });
