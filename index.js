@@ -224,8 +224,7 @@ app.put('/users/:Username', (req, res) => {
 		});
 });
 
-// Delete Requests
-// Delete movie from users Favorite List
+// DELETE Request, Allows Users to remove a movie from their "FavoriteMovie" list by movie ID
 app.delete('/users/:Username/FavoriteMovies/:MovieID', (req, res) => {
 	Users.findOneAndUpdate(
 		{ Username: req.params.Username },
