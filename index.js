@@ -20,6 +20,9 @@ require('./passport');
 // Cors access (allowed domains)
 const cors = require('cors');
 
+// List of allowed domains
+let allowedOrigins = ['http://localhost:8080', 'http://localhost'];
+
 // Imports Express and creates the server
 const express = require('express'),
 	morgan = require('morgan'),
