@@ -25,7 +25,7 @@ passport.use(
 				if (!user) {
 					console.log('Incorrect Username');
 					return callback(null, false, {
-						message: 'Incorrect Username',
+						message: 'Incorrect Username or Password',
 					});
 				}
 
