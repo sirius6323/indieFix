@@ -36,7 +36,7 @@ passport.use(
 	)
 );
 
-// Token Authentication, authenticates Users on token submitted with their requests
+// JWT Token Authentication, authenticates Users on token submitted with their requests
 passport.use(
 	new JWTStrategy(
 		{
