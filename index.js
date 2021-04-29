@@ -50,7 +50,7 @@ app.use(bodyParser.json());
 
 let auth = require('./auth')(app);
 
-app.user(cors());
+app.use(cors());
 
 app.use((err, req, res, next) => {
 	console.log(err.stack);
