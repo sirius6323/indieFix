@@ -182,6 +182,8 @@ app.get(
 
 // POST Request, Allows new users to register
 app.post('/users', (req, res) => {
+	let hashedPassword = Users.hashedPassword(req.body.Password);
+
 	Users.findOne({ Username: req.body.Username })
 		.then((user) => {
 			if (user) {
@@ -196,7 +198,7 @@ app.post('/users', (req, res) => {
 					LastName: req.body.LastName,
 					Birthday: req.body.Birthday,
 					Username: req.body.Username,
-					Password: req.body.Password,
+					Password: hashedPassword,
 					Email: req.body.Email,
 				})
 					.then((user) => {
