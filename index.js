@@ -11,18 +11,18 @@ Requirements
 9. Allow existing users to deregister 
 */
 
-// Integrates Mongoose with indieFix REST API 
+// Integrates Mongoose with indieFix REST API
 const mongoose = require('mongoose'),
 	Models = require('./models.js'),
 	passport = require('passport');
-	require('./passport');
-	
-// Imports Express and creates the server 	
+require('./passport');
+
+// Imports Express and creates the server
 const express = require('express'),
 	morgan = require('morgan'),
 	bodyParser = require('body-parser');
 
-const app = express(),
+const app = express();
 
 // Model variables
 const Movies = Models.Movie;
@@ -64,16 +64,20 @@ app.get('/', (req, res) => {
 });
 
 // GET Request, Return a list of all movies to the user
-app.get('/movies', passport.authenticate('jwt', { session: false }), (req, res) => {
-	Movies.find()
-		.then((allMovies) => {
-			res.status(201).json(allMovies);
-		})
-		.catch((error) => {
-			console.error(error);
-			res.status(500).send(`Error: ${error}`);
-		});
-});
+app.get(
+	'/movies',
+	passport.authenticate('jwt', { session: false }),
+	(req, res) => {
+		Movies.find()
+			.then((allMovies) => {
+				res.status(201).json(allMovies);
+			})
+			.catch((error) => {
+				console.error(error);
+				res.status(500).send(`Error: ${error}`);
+			});
+	}
+);
 
 // GET Request, Return a single movie by Title to the user
 app.get('/movies/:Title', (req, res) => {
