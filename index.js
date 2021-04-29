@@ -53,6 +53,7 @@ app.use(bodyParser.json());
 
 let auth = require('./auth')(app);
 
+// Allows access to indieFix API if domain in within allowedOrigins
 app.use(
 	cors({
 		origin: (origin, callback) => {
