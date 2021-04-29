@@ -190,7 +190,7 @@ app.post('/users', (req, res) => {
 				return res
 					.status(400)
 					.send(
-						`The UserName "${req.body.Username}" has already been taken by someone else.`
+						`The Username "${req.body.Username}" has already been taken by someone else.`
 					);
 			} else {
 				Users.create({
