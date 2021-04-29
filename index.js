@@ -20,8 +20,7 @@ const mongoose = require('mongoose'),
 // Imports Express and creates the server 	
 const express = require('express'),
 	morgan = require('morgan'),
-	bodyParser = require('body-parser'),
-const { parse } = require('uuid');
+	bodyParser = require('body-parser');
 
 const app = express(),
 
