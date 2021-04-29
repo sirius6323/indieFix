@@ -29,6 +29,13 @@ passport.use(
 					});
 				}
 
+				if (!user.validatePassword(password)) {
+					console.log('Incorrect Password');
+					return callback(null, false, {
+						message: 'Incorrect Password',
+					});
+				}
+
 				console.log('Finished');
 				return callback(null, user);
 			});
