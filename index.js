@@ -11,13 +11,19 @@ Requirements
 9. Allow existing users to deregister 
 */
 
-// Import Mongoose, models.js file, Express, Morgan, bodyParser,
+// Integrates Mongoose with indieFix REST API 
 const mongoose = require('mongoose'),
 	Models = require('./models.js'),
-	express = require('express'),
+	passport = require('passport');
+	require('./passport');
+	
+// Imports Express and creates the server 	
+const express = require('express'),
 	morgan = require('morgan'),
-	app = express(),
-	bodyParser = require('body-parser');
+	bodyParser = require('body-parser'),
+const { parse } = require('uuid');
+
+const app = express(),
 
 // Model variables
 const Movies = Models.Movie;
