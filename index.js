@@ -17,6 +17,9 @@ const mongoose = require('mongoose'),
 	passport = require('passport');
 require('./passport');
 
+// Cors access (allowed domains)
+const cors = require('cors');
+
 // Imports Express and creates the server
 const express = require('express'),
 	morgan = require('morgan'),
@@ -24,7 +27,7 @@ const express = require('express'),
 
 const app = express();
 
-// Model variables
+// Model schemas
 const Movies = Models.Movie;
 const Users = Models.User;
 
@@ -47,11 +50,15 @@ app.use(bodyParser.json());
 
 let auth = require('./auth')(app);
 
+app.user(cors());
+
 app.use((err, req, res, next) => {
 	console.log(err.stack);
 	res
 		.status(500)
-		.send('The hosting server is broken or exploded!!! Call me to fix it.');
+		.send(
+			'The hosting server is broken or exploded!!! Try again later when its operational.'
+		);
 });
 
 // GET Request, Welcome message to the user
