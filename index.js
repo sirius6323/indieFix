@@ -17,6 +17,8 @@ const mongoose = require('mongoose'),
 	passport = require('passport');
 require('./passport');
 
+const { check, validationResult } = require('express-validator');
+
 // Cors access (allowed domains)
 const cors = require('cors');
 
