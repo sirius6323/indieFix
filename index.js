@@ -292,8 +292,30 @@ app.post(
 // PUT Request, Allows Users to update their account by Username
 app.put(
 	'/users/:Username',
+	[
+		check('FirstName', 'Your first name is required').not().isEmpty(),
+		check('LastName', 'Your last name is required').not().isEmpty(),
+		check('Username', 'Username requires a minimum of 5 characters').isLength({
+			min: 5,
+		}),
+		check(
+			'Username',
+			'Username only allows alphanumeric characters'
+		).isAlphanumeric(),
+		check(
+			'Password',
+			'Your password requires a minimum of 8 characters'
+		).isLength({ min: 8 }),
+		check('Email', 'Email does not appear to be valid').isEmail(),
+	],
 	passport.authenticate('jwt', { session: false }),
 	(req, res) => {
+		const errors = validationResult(req);
+
+		if (!errors.isEmpty()) {
+			return res.status(422).json({ errors: errors.array() });
+		}
+
 		Users.findOneAndUpdate(
 			{ Username: req.params.Username },
 			{
