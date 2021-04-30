@@ -317,6 +317,7 @@ app.put(
 		}
 
 		const hashedPassword = Users.hashPassword(req.body.password);
+
 		Users.findOneAndUpdate(
 			{ Username: req.params.Username },
 			{
