@@ -23,7 +23,11 @@ const { check, validationResult } = require('express-validator');
 const cors = require('cors');
 
 // List of allowed domains
-const allowedOrigins = ['http://localhost:8080', 'http://localhost'];
+const allowedOrigins = [
+	'http://localhost:8080',
+	'http://localhost',
+	'https://indiefix.herokuapp.com/',
+];
 
 // Imports Express and creates the server
 const express = require('express'),
