@@ -410,7 +410,8 @@ app.delete(
 	}
 );
 
-// Listens for requests
-app.listen(8080, () => {
-	console.log('indieFix API is listening on port 8080');
+// Port Listener
+const port = process.env.PORT || 8080;
+app.listen(port, '0.0.0.0', () => {
+	console.log(`Listening on Port ${port}`);
 });
