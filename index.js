@@ -23,7 +23,7 @@ const { check, validationResult } = require('express-validator');
 const cors = require('cors');
 
 // List of allowed domains
-let allowedOrigins = ['http://localhost:8080', 'http://localhost'];
+const allowedOrigins = ['http://localhost:8080', 'http://localhost'];
 
 // Imports Express and creates the server
 const express = require('express'),
@@ -53,7 +53,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use(bodyParser.json());
 
-let auth = require('./auth')(app);
+const auth = require('./auth')(app);
 
 // Allows access to indieFix API if domain in within allowedOrigins
 app.use(
@@ -183,40 +183,67 @@ app.get(
 );
 
 // POST Request, Allows new users to register
-app.post('/users', (req, res) => {
-	let hashedPassword = Users.hashedPassword(req.body.Password);
+app.post(
+	'/users',
+	// Validates entered information by the user
+	[
+		check('FirstName', 'Your first name is required').not().isEmpty(),
+		check('LastName', 'Your last name is required').not().isEmpty(),
+		check('Username', 'Username requires a minimum of 5 characters').isLength({
+			min: 5,
+		}),
+		check(
+			'Username',
+			'Username only allows alphanumeric characters'
+		).isAlphanumeric(),
+		check(
+			'Password',
+			'Your password requires a minimum of 8 characters'
+		).isLength({ min: 8 }),
+		check('Email', 'Email does not appear to be valid').isEmail(),
+	],
+	(req, res) => {
+		// Checks the validation object for errors
+		const errors = validationResult(req);
 
-	Users.findOne({ Username: req.body.Username })
-		.then((user) => {
-			if (user) {
-				return res
-					.status(400)
-					.send(
-						`The Username "${req.body.Username}" has already been taken by someone else.`
-					);
-			} else {
-				Users.create({
-					FirstName: req.body.FirstName,
-					LastName: req.body.LastName,
-					Birthday: req.body.Birthday,
-					Username: req.body.Username,
-					Password: hashedPassword,
-					Email: req.body.Email,
-				})
-					.then((user) => {
-						res.status(201).json(user);
+		if (!errors.isEmpty()) {
+			return res.status(422).json({ errors: errors.array() });
+		}
+
+		const hashedPassword = Users.hashedPassword(req.body.Password);
+
+		Users.findOne({ Username: req.body.Username })
+			.then((user) => {
+				if (user) {
+					return res
+						.status(400)
+						.send(
+							`The Username "${req.body.Username}" has already been taken by someone else.`
+						);
+				} else {
+					Users.create({
+						FirstName: req.body.FirstName,
+						LastName: req.body.LastName,
+						Birthday: req.body.Birthday,
+						Username: req.body.Username,
+						Password: hashedPassword,
+						Email: req.body.Email,
 					})
-					.catch((error) => {
-						console.error(error);
-						res.status(500).send(`Error: ${error}`);
-					});
-			}
-		})
-		.catch((error) => {
-			console.error(error);
-			res.status(500).send(`Error: ${error}`);
-		});
-});
+						.then((user) => {
+							res.status(201).json(user);
+						})
+						.catch((error) => {
+							console.error(error);
+							res.status(500).send(`Error: ${error}`);
+						});
+				}
+			})
+			.catch((error) => {
+				console.error(error);
+				res.status(500).send(`Error: ${error}`);
+			});
+	}
+);
 
 // POST Request, Allows Users to add a movie to their "Favorites" list by movie ID
 app.post(
