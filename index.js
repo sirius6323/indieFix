@@ -73,6 +73,7 @@ app.use(
 	})
 );
 
+// Error handling middleware
 app.use((err, req, res, next) => {
 	console.log(err.stack);
 	res
