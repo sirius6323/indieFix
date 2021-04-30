@@ -210,7 +210,7 @@ app.post(
 			return res.status(422).json({ errors: errors.array() });
 		}
 
-		const hashedPassword = Users.hashedPassword(req.body.Password);
+		const hashedPassword = Users.hashPassword(req.body.Password);
 
 		Users.findOne({ Username: req.body.Username })
 			.then((user) => {
@@ -316,6 +316,7 @@ app.put(
 			return res.status(422).json({ errors: errors.array() });
 		}
 
+		const hashedPassword = Users.hashPassword(req.body.password);
 		Users.findOneAndUpdate(
 			{ Username: req.params.Username },
 			{
@@ -324,7 +325,7 @@ app.put(
 					LastName: req.body.LastName,
 					Birthday: req.body.Birthday,
 					Username: req.body.Username,
-					Password: req.body.Password,
+					Password: hashedPassword,
 					Email: req.body.Email,
 				},
 			},
