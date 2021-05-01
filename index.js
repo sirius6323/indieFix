@@ -40,7 +40,7 @@ const app = express();
 const Movies = Models.Movie;
 const Users = Models.User;
 
-/* Connects to local indieFixDB
+/*
 mongoose.connect('mongodb://localhost:27017/indieFixDB', {
 	useNewURLParser: true,
 	useUnifiedTopology: true,
