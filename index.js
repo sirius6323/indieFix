@@ -47,6 +47,11 @@ mongoose.connect('mongodb://localhost:27017/indieFixDB', {
 });
 */
 
+mongoose.connect(process.env.CONNECTION_URI, {
+	useNewURLParser: true,
+	useUnifiedTopology: true,
+});
+
 // Morgan logs url to terminal
 app.use(morgan('common'));
 
