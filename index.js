@@ -4,11 +4,11 @@ Requirements
 2. Return all the data of a single movie by the title to the user - (Done)
 3. Return data about a Genre & (Description) by Name (e.g., "Thriller") - (Done)
 4. Return data about a Director (Bio, Birth year, Death year) by Name - (Done)
-5. Allow new users to register - (Done)
-6. Allow users to update their user info (Username, Password, Email, Birthday) - (Done)
-7. Allow users to add a movie to their list of favorites - (Done)
-8. Allow users remove a movie from their list of favorites - (Done)
-9. Allow existing users to deregister - (Done)
+5. Allow new users to register 
+6. Allow users to update their user info (Username, Password, Email, Birthday)
+7. Allow users to add a movie to their list of favorites 
+8. Allow users remove a movie from their list of favorites
+9. Allow existing users to deregister 
 */
 
 // Integrates Mongoose with indieFix REST API
@@ -74,7 +74,6 @@ app.use(
 	})
 );
 
-// Error handling middleware
 app.use((err, req, res, next) => {
 	console.log(err.stack);
 	res
@@ -416,7 +415,7 @@ app.delete(
 	}
 );
 
-// Port Listener
+// Listens for requests
 const port = process.env.PORT || 8080;
 app.listen(port, '0.0.0.0', () => {
 	console.log(`Listening on Port ${port}`);
