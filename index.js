@@ -47,6 +47,14 @@ mongoose.connect('mongodb://localhost:27017/indieFixDB', {
 });
 */
 
+mongoose.connect(
+	'mongodb+srv://indieFixDBadmin:ghostofyou35@indiefixdb.osrbj.mongodb.net/indieFixDB?retryWrites=true&w=majority',
+	{
+		useNewURLParser: true,
+		useUnifiedTopology: true,
+	}
+);
+
 // Morgan logs url to terminal
 app.use(morgan('common'));
 
