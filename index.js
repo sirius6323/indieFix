@@ -40,18 +40,6 @@ const app = express();
 const Movies = Models.Movie;
 const Users = Models.User;
 
-/*
-mongoose.connect('mongodb://localhost:27017/indieFixDB', {
-	useNewURLParser: true,
-	useUnifiedTopology: true,
-});
-*/
-
-mongoose.connect(process.env.CONNECTION_URI, {
-	useNewURLParser: true,
-	useUnifiedTopology: true,
-});
-
 // Morgan logs url to terminal
 app.use(morgan('common'));
 
@@ -78,6 +66,18 @@ app.use(
 		},
 	})
 );
+
+/*
+mongoose.connect('mongodb://localhost:27017/indieFixDB', {
+	useNewURLParser: true,
+	useUnifiedTopology: true,
+});
+*/
+
+mongoose.connect(process.env.CONNECTION_URI, {
+	useNewURLParser: true,
+	useUnifiedTopology: true,
+});
 
 app.use((err, req, res, next) => {
 	console.log(err.stack);
