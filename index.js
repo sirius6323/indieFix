@@ -302,6 +302,7 @@ app.post(
 // PUT Request, Allows Users to update their account by Username
 app.put(
 	'/users/:Username',
+	passport.authenticate('jwt', { session: false }),
 	[
 		check('FirstName', 'Your first name is required').not().isEmpty(),
 		check('LastName', 'Your last name is required').not().isEmpty(),
@@ -318,7 +319,6 @@ app.put(
 		).isLength({ min: 8 }),
 		check('Email', 'Email does not appear to be valid').isEmail(),
 	],
-	passport.authenticate('jwt', { session: false }),
 	(req, res) => {
 		const errors = validationResult(req);
 
