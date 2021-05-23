@@ -25,6 +25,7 @@ const cors = require('cors');
 // List of allowed domains
 const allowedOrigins = [
 	'http://localhost:8080',
+	'http://localhost:1234',
 	'http://localhost',
 	'https://indiefix.herokuapp.com/',
 ];
