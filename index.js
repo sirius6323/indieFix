@@ -101,8 +101,8 @@ app.get('/', (req, res) => {
 // GET Request, Return a list of all movies to the user
 app.get('/movies', function (req, res) {
 	Movies.find()
-		.then(function (allMovies) {
-			res.status(201).json(allMovies);
+		.then(function (movies) {
+			res.status(201).json(movies);
 		})
 		.catch(function (error) {
 			console.error(error);
