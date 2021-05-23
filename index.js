@@ -7,7 +7,7 @@ Requirements
 5. Allow new users to register - (Done)
 6. Allow users to update their user info (Username, Password, Email, Birthday) - (Done)
 7. Allow users to add a movie to their list of favorites - (Done)
-8. Allow users remove a movie from their list of favorites -(Done)
+8. Allow users remove a movie from their list of favorites - (Done)
 9. Allow existing users to deregister - (Done)
 */
 
@@ -100,10 +100,10 @@ app.get('/', (req, res) => {
 // GET Request, Return a list of all movies to the user
 app.get('/movies', function (req, res) {
 	Movies.find()
-		.then((allMovies) => {
+		.then(function (allMovies) {
 			res.status(201).json(allMovies);
 		})
-		.catch((error) => {
+		.catch(function (error) {
 			console.error(error);
 			res.status(500).send(`Error: ${error}`);
 		});
