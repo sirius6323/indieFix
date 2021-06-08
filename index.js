@@ -99,16 +99,20 @@ app.get('/', (req, res) => {
 });
 
 // GET Request, Return a list of all movies to the user
-app.get('/movies', function (req, res) {
-	Movies.find()
-		.then(function (movies) {
-			res.status(201).json(movies);
-		})
-		.catch(function (error) {
-			console.error(error);
-			res.status(500).send(`Error: ${error}`);
-		});
-});
+app.get(
+	'/movies',
+	passport.authenticate('jwt', { session: false }),
+	(req, res) => {
+		Movies.find()
+			.then(function (movies) {
+				res.status(201).json(movies);
+			})
+			.catch(function (error) {
+				console.error(error);
+				res.status(500).send(`Error: ${error}`);
+			});
+	}
+);
 
 // GET Request, Return a single movie by Title to the user
 app.get(
