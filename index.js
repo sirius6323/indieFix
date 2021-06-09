@@ -107,7 +107,7 @@ app.get(
 			.then((allMovies) => {
 				res.status(201).json(allMovies);
 			})
-			.catch(function (error) {
+			.catch((error) => {
 				console.error(error);
 				res.status(500).send(`Error: ${error}`);
 			});
