@@ -11,8 +11,6 @@ Requirements
 9. Allow existing users to deregister - (Done)
 */
 
-const dotenv = require('dotenv').config();
-
 // Imports Express and creates the server
 const express = require('express'),
 	morgan = require('morgan'),
