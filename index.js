@@ -104,8 +104,8 @@ app.get(
 	passport.authenticate('jwt', { session: false }),
 	(req, res) => {
 		Movies.find()
-			.then(function (movies) {
-				res.status(201).json(movies);
+			.then((allMovies) => {
+				res.status(201).json(allMovies);
 			})
 			.catch(function (error) {
 				console.error(error);
