@@ -11,11 +11,16 @@ Requirements
 9. Allow existing users to deregister - (Done)
 */
 
-// Integrates Mongoose with indieFix REST API
-const mongoose = require('mongoose'),
+const dotenv = require('dotenv').config();
+
+// Imports Express and creates the server
+const express = require('express'),
+	morgan = require('morgan'),
+	bodyParser = require('body-parser'),
+	// Integrates Mongoose with indieFix REST API
+	mongoose = require('mongoose'),
 	Models = require('./models.js'),
 	passport = require('passport');
-require('./passport');
 
 const { check, validationResult } = require('express-validator');
 
@@ -29,11 +34,6 @@ const allowedOrigins = [
 	'http://localhost',
 	'https://indiefix.herokuapp.com',
 ];
-
-// Imports Express and creates the server
-const express = require('express'),
-	morgan = require('morgan'),
-	bodyParser = require('body-parser');
 
 const app = express();
 
