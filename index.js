@@ -11,6 +11,14 @@ Requirements
 9. Allow existing users to deregister - (Done)
 */
 
+mongoose.connect(process.env.CONNECTION_URI, {
+	useNewURLParser: true,
+	useUnifiedTopology: true,
+});
+
+// Required to use express
+const app = express();
+
 // Imports Express and creates the server
 const express = require('express'),
 	morgan = require('morgan'),
@@ -19,11 +27,25 @@ const express = require('express'),
 	mongoose = require('mongoose'),
 	Models = require('./models.js'),
 	passport = require('passport');
+require('./passport');
 
 const { check, validationResult } = require('express-validator');
 
 // Cors access (allowed domains)
 const cors = require('cors');
+// Morgan logs url to terminal
+app.use(morgan('common'));
+
+// Serves static documentation of indieFix
+app.use(express.static('public'));
+
+// Error handling middleware
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
+
+// Required to use CORS
+app.use(cors(corsOptions));
+const auth = require('./auth')(app);
 
 // List of allowed domains
 const allowedOrigins = [
@@ -33,24 +55,9 @@ const allowedOrigins = [
 	'https://indiefix.herokuapp.com',
 ];
 
-const app = express();
-
 // Model schemas
 const Movies = Models.Movie;
 const Users = Models.User;
-
-// Morgan logs url to terminal
-app.use(morgan('common'));
-
-// Serves static documentation of indieFix
-app.use(express.static('public'));
-
-// Error handling middleware
-app.use(bodyParser.urlencoded({ extended: true }));
-
-app.use(bodyParser.json());
-
-const auth = require('./auth')(app);
 
 // Allows access to indieFix API if domain in within allowedOrigins
 app.use(
@@ -73,11 +80,6 @@ mongoose.connect('mongodb://localhost:27017/indieFixDB', {
 	useUnifiedTopology: true,
 });
 */
-
-mongoose.connect(process.env.CONNECTION_URI, {
-	useNewURLParser: true,
-	useUnifiedTopology: true,
-});
 
 app.use((err, req, res, next) => {
 	console.log(err.stack);
