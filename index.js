@@ -33,7 +33,9 @@ require('./passport');
 const { check, validationResult } = require('express-validator');
 
 // Integrates Mongoose with indieFix REST API
-const mongoose = require('mongoose')), (Models = require('./models.js'));
+const mongoose = require('mongoose');
+const Models = require('./models.js');
+
 // Model schemas
 const Movies = Models.Movie;
 const Users = Models.User;
@@ -56,8 +58,6 @@ mongoose.connect('mongodb://localhost:27017/indieFixDB', {
 	useUnifiedTopology: true,
 });
 */
-
-
 
 app.use((err, req, res, next) => {
 	console.log(err.stack);
