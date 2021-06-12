@@ -25,13 +25,11 @@ const express = require('express'),
 	bodyParser = require('body-parser'),
 	// Integrates Mongoose with indieFix REST API
 	mongoose = require('mongoose'),
-	Models = require('./models.js'),
-	passport = require('passport');
-require('./passport');
+	Models = require('./models.js');
 
 const { check, validationResult } = require('express-validator');
 
-// Cors access (allowed domains)
+// CORS access (allowed domains)
 const cors = require('cors');
 // Morgan logs url to terminal
 app.use(morgan('common'));
@@ -45,10 +43,28 @@ app.use(bodyParser.json());
 
 // Required to use CORS
 app.use(cors(corsOptions));
-const auth = require('./auth')(app);
+const auth = require('./auth')(app),
+	passport = require('passport');
+require('./passport');
+
+// List of allowed domains
+const allowedOrigins = [
+	'http://localhost:8080',
+	'http://localhost:1234',
+	'http://localhost',
+	'https://indiefix.herokuapp.com',
+];
 
 // Allows access to indieFix API if domain in within allowedOrigins
-app.use(cors());
+const corsOptions = {
+	origin: function (origin, callback) {
+		if (allowedOrigins.indexOf(origin) !== -1 || !origin) {
+			callback(null, true);
+		} else {
+			callback(new Error('Not allowed by CORS'));
+		}
+	},
+};
 
 /*
 mongoose.connect('mongodb://localhost:27017/indieFixDB', {
