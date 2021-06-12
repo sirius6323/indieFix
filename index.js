@@ -14,18 +14,12 @@ Requirements
 // Imports Express and creates the server
 const express = require('express'),
 	morgan = require('morgan'),
-	bodyParser = require('body-parser'),
-	// Integrates Mongoose with indieFix REST API
-	mongoose = require('mongoose'),
-	Models = require('./models.js');
+	bodyParser = require('body-parser');
 
-const { check, validationResult } = require('express-validator');
-
-// Required to use express
 const app = express();
+app.use(bodyParser.json());
 // Error handling middleware
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use(bodyParser.json());
 
 const auth = require('./auth')(app);
 
@@ -36,6 +30,15 @@ app.use(cors());
 const passport = require('passport');
 require('./passport');
 
+const { check, validationResult } = require('express-validator');
+
+// Integrates Mongoose with indieFix REST API
+const mongoose = require('mongoose')), (Models = require('./models.js'));
+// Model schemas
+const Movies = Models.Movie;
+const Users = Models.User;
+
+// MongoDB Atlas Host
 mongoose.connect(process.env.CONNECTION_URI, {
 	useNewURLParser: true,
 	useUnifiedTopology: true,
@@ -54,9 +57,7 @@ mongoose.connect('mongodb://localhost:27017/indieFixDB', {
 });
 */
 
-// Model schemas
-const Movies = Models.Movie;
-const Users = Models.User;
+
 
 app.use((err, req, res, next) => {
 	console.log(err.stack);
