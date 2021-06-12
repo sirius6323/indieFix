@@ -11,14 +11,6 @@ Requirements
 9. Allow existing users to deregister - (Done)
 */
 
-mongoose.connect(process.env.CONNECTION_URI, {
-	useNewURLParser: true,
-	useUnifiedTopology: true,
-});
-
-// Required to use express
-const app = express();
-
 // Imports Express and creates the server
 const express = require('express'),
 	morgan = require('morgan'),
@@ -29,44 +21,33 @@ const express = require('express'),
 
 const { check, validationResult } = require('express-validator');
 
+// Required to use express
+const app = express();
+// Error handling middleware
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
+
+const auth = require('./auth')(app);
+
 // CORS access (allowed domains)
 const cors = require('cors');
+app.use(cors());
+
+const passport = require('passport');
+require('./passport');
+
+mongoose.connect(process.env.CONNECTION_URI, {
+	useNewURLParser: true,
+	useUnifiedTopology: true,
+});
+
 // Morgan logs url to terminal
 app.use(morgan('common'));
 
 // Serves static documentation of indieFix
 app.use(express.static('public'));
 
-// Error handling middleware
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(bodyParser.json());
-
-// Required to use CORS
-app.use(cors(corsOptions));
-const auth = require('./auth')(app),
-	passport = require('passport');
-require('./passport');
-
-// List of allowed domains
-const allowedOrigins = [
-	'http://localhost:8080',
-	'http://localhost:1234',
-	'http://localhost',
-	'https://indiefix.herokuapp.com',
-];
-
-// Allows access to indieFix API if domain in within allowedOrigins
-const corsOptions = {
-	origin: function (origin, callback) {
-		if (allowedOrigins.indexOf(origin) !== -1 || !origin) {
-			callback(null, true);
-		} else {
-			callback(new Error('Not allowed by CORS'));
-		}
-	},
-};
-
-/*
+/* Local Host
 mongoose.connect('mongodb://localhost:27017/indieFixDB', {
 	useNewURLParser: true,
 	useUnifiedTopology: true,
