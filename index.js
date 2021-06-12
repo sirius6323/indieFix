@@ -47,18 +47,6 @@ app.use(bodyParser.json());
 app.use(cors(corsOptions));
 const auth = require('./auth')(app);
 
-// List of allowed domains
-const allowedOrigins = [
-	'http://localhost:8080',
-	'http://localhost:1234',
-	'http://localhost',
-	'https://indiefix.herokuapp.com',
-];
-
-// Model schemas
-const Movies = Models.Movie;
-const Users = Models.User;
-
 // Allows access to indieFix API if domain in within allowedOrigins
 app.use(cors());
 
@@ -68,6 +56,10 @@ mongoose.connect('mongodb://localhost:27017/indieFixDB', {
 	useUnifiedTopology: true,
 });
 */
+
+// Model schemas
+const Movies = Models.Movie;
+const Users = Models.User;
 
 app.use((err, req, res, next) => {
 	console.log(err.stack);
