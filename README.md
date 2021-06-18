@@ -27,9 +27,9 @@ indieFix is a movie web application that will provide users with access to infor
 
 ## Environment
 
-- Visual Studio Code 1.51.0
+- Visual Studio Code v1.51.0
 - npm v7.14.0
-- node v14.16.1.
+- node v14.16.1
 - mongoDB v3.6.6
 
 ## Hosting
